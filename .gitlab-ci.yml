@@ -1,0 +1,13 @@
+image: docker:latest
+services:
+  - docker:dind
+
+stages:
+  - build
+
+Docker Build:
+  stage: build
+  script:
+    - sh docker-builder
+  only:
+    - master
