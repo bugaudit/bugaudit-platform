@@ -3,11 +3,18 @@ services:
   - docker:dind
 
 stages:
-  - build
+  - "Docker Build"
+  - "Downstream Triggers"
 
-Docker Build:
-  stage: build
+BugAudit Platform Build:
+  stage: "Docker Build"
   script:
     - sh docker-builder
+  only:
+    - master
+
+BugAudit Environment Build:
+  stage: "Downstream Triggers"
+  trigger: bugaudit/bugaudit-cli
   only:
     - master
