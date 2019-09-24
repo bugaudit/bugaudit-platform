@@ -15,7 +15,7 @@ RUN gem install bundler-audit
 RUN apk add npm
 RUN npm install -g retire
 WORKDIR /bugaudit-tools
-ADD https://dl.bintray.com/jeremy-long/owasp/dependency-check-5.2.1-release.zip /bugaudit-tools/dependency-check.zip
+ADD https://dl.bintray.com/jeremy-long/owasp/dependency-check-5.2.2-release.zip /bugaudit-tools/dependency-check.zip
 RUN unzip dependency-check.zip
 RUN rm dependency-check.zip
 RUN ln -s /bugaudit-tools/dependency-check/bin/dependency-check.sh /bin/dependency-check
