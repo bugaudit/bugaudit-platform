@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 BUGAUDIT_VERSION="0.2"
-DOCKER_USERNAME=`echo $DOCKER_USERNAME_BASE64 | base64 -d`
-DOCKER_PASSWORD=`echo $DOCKER_PASSWORD_BASE64 | base64 -d`
 echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 docker build --build-arg BUGAUDIT_VERSION=$BUGAUDIT_VERSION -t bugaudit/bugaudit-platform:$BUGAUDIT_VERSION .
 docker tag bugaudit/bugaudit-platform:$BUGAUDIT_VERSION bugaudit/bugaudit-platform:latest
