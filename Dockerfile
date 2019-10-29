@@ -1,8 +1,8 @@
-FROM alpine:3.10.2
+FROM golang:alpine3.10
 LABEL maintainer="shibme"
 RUN apk add --no-cache curl wget bash
 RUN apk add --no-cache openssh-client
-RUN apk add --no-cache git make musl-dev go
+RUN apk add --no-cache git
 RUN apk add --no-cache openjdk8
 RUN apk add --no-cache maven
 RUN apk add --no-cache ruby ruby-io-console ruby-bundler ruby-json
@@ -18,9 +18,8 @@ ADD https://dl.bintray.com/jeremy-long/owasp/dependency-check-5.2.2-release.zip 
 RUN unzip dependency-check.zip
 RUN rm dependency-check.zip
 RUN ln -s /bugaudit-tools/dependency-check/bin/dependency-check.sh /bin/dependency-check
-WORKDIR /bugaudit-tools/gosec
-RUN wget -O - -q https://raw.githubusercontent.com/securego/gosec/master/install.sh | sh -s v2.1.0
-RUN ln -s /bugaudit-tools/gosec/bin/gosec /bin/gosec
+RUN go get github.com/securego/gosec/cmd/gosec
+RUN ln -s /go/bin/gosec /bin/gosec
 WORKDIR /bugaudit-workspace
 RUN mkdir /root/.ssh
 COPY bugaudit-docker-git-config /root/.ssh/config
