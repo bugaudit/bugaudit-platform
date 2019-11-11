@@ -5,6 +5,7 @@ RUN apk add --no-cache openssh-client
 RUN apk add --no-cache git
 RUN apk add --no-cache openjdk8
 RUN apk add --no-cache maven
+RUN apk add --no-cache gradle
 RUN apk add --no-cache ruby ruby-io-console ruby-bundler ruby-json
 RUN gem install rdoc --no-document
 RUN gem install bundler:1.17.1
